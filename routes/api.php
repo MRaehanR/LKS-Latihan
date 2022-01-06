@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BahanBakuController;
 use App\Http\Controllers\PembelianBahanBakuController;
 use App\Http\Controllers\RequestPembelianBahanBakuController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +23,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::get('/bahan-baku', [BahanBakuController::class, 'index']);
-// Route::get('/bahan-baku/{id}', [BahanBakuController::class, 'show']);
-// Route::get('/bahan-baku', [BahanBakuController::class, 'getByCategory']);
+Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
 
-Route::resource('/bahan-baku', BahanBakuController::class);
-Route::resource('/pembelian-bahan-baku', PembelianBahanBakuController::class);
-Route::resource('/request-pembelian-bahan-baku', RequestPembelianBahanBakuController::class);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::resource('/bahan-baku', BahanBakuController::class);
+    Route::resource('/pembelian-bahan-baku', PembelianBahanBakuController::class);
+    Route::resource('/request-pembelian-bahan-baku', RequestPembelianBahanBakuController::class);
+
+    Route::get('user', [AuthController::class, 'index']);
+    Route::post('logout', [AuthController::class, 'logout']);
+    Route::put('user/{id}', [AuthController::class, 'update']);
+    Route::delete('user/{id}', [AuthController::class, 'delete']);
+});

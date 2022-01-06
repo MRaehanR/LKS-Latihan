@@ -20,7 +20,7 @@ class CreatePembelianBahanBakusTable extends Migration
             $table->integer("jumlah");
             $table->string("supplier");
             $table->string("no_invoice");
-            $table->integer("id_bahan_baku")->default(0);
+            $table->integer("id_bahan_baku");
             $table->timestamps();
         });
     }

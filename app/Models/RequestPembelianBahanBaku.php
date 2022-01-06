@@ -9,5 +9,5 @@ class RequestPembelianBahanBaku extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['no_request', 'bahan_baku', 'jumlah', 'supplier', 'departemen'];
+    protected $fillable = ['no_request', 'bahan_baku', 'jumlah', 'supplier', 'departemen', 'id_bahan_baku'];
 }

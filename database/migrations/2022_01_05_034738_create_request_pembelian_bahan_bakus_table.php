@@ -21,6 +21,7 @@ class CreateRequestPembelianBahanBakusTable extends Migration
             $table->string("supplier");
             $table->string("departemen");
             $table->timestamp("order_at");
+            $table->integer("id_bahan_baku");
             $table->timestamps();
         });
     }

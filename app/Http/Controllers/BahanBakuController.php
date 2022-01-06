@@ -22,11 +22,7 @@ class BahanBakuController extends Controller
         return response()->json($response, Response::HTTP_OK);
     }
 
-    public function create()
-    {
-        
-    }
-
+    
     public function store(Request $request)
     {
         try {
@@ -41,55 +37,40 @@ class BahanBakuController extends Controller
                 'message' => 'Bahan Baku Added',
                 'data' => $bahanBaku
             ];
-
+            
             return response()->json($response, Response::HTTP_CREATED);
-
+            
         } catch (QueryException $e) {
             return response()->json([
                 'message' => 'Failed', $e->errorInfo
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
     }
-
-    public function getByCategory(Request $request)
-    {
-        $category = $request->category;
-        
-        $bahanBaku = BahanBaku::where('nama_departemen', $category)->get();
-        $response = [
-            'data'=> $bahanBaku
-        ];
-
-        return response()->json($response, Response::HTTP_OK);
-    }
-
+    
+    
     public function show($id)
     {
         $bahanBaku = BahanBaku::where('nama_departemen', $id)->get();
-
+        
         $response = [
             'data'=> $bahanBaku
         ];
-
+        
         return response()->json($response, Response::HTTP_OK);
     }
-
-    public function edit($id)
-    {
-        //
-    }
-
+    
+    
     public function update(Request $request, $id)
     {
         $bahanBaku = BahanBaku::findOrFail($id);
-
+        
         try {
             $bahanBaku->update($request->all());
             $response = [
                 'message' => 'Bahan Baku updated',
                 'data' => $bahanBaku
             ];
-
+            
             return response()->json($response, Response::HTTP_OK);
         } catch (QueryException $e) {
             return response()->json([
@@ -97,22 +78,32 @@ class BahanBakuController extends Controller
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
     }
-
+    
     public function destroy($id)
     {
         $bahanBaku = BahanBaku::findOrFail($id);
-
+        
         try {
             $bahanBaku->delete();
             $response = [
                 'message' => 'Bahan Baku deleted'            
             ];
-
+            
             return response()->json($response, Response::HTTP_OK);
         } catch (QueryException $e) {
             return response()->json([
                 'message' => 'Failed', $e->errorInfo
             ]);
         }
+    }    
+    
+    public function edit($id)
+    {
+        
+    }
+    
+    public function create()
+    {
+        
     }
 }

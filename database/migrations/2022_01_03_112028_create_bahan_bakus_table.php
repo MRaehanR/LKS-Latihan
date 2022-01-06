@@ -16,7 +16,8 @@ class CreateBahanBakusTable extends Migration
         Schema::create('bahan_bakus', function (Blueprint $table) {
             $table->id();
             $table->string("nama_departemen");
-            $table->string("bahan_baku");            
+            $table->string("bahan_baku");      
+            $table->integer("jumlah")->default(0);      
             $table->string("jenis_bahan_baku");
             $table->date("date")->default(now());
             $table->timestamps();

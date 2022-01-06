@@ -9,5 +9,5 @@ class BahanBaku extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama_departemen', 'bahan_baku','jenis_bahan_baku'];
+    protected $fillable = ['nama_departemen', 'bahan_baku','jenis_bahan_baku', 'jumlah'];
 }
